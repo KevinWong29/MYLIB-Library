@@ -103,7 +103,8 @@ static inline void SetCompareValue(void)
 void TENMS__Reset(void) 
 {
     //Reset and configure the Timer A peripheral to continuous compare mode
-    HWREG16(TIMERA_TACTL_REG_ADDR) = TENMS__TACTL_STARTUP_CONFIG;
+    //Timer A peripheral configuration done else where in hardware initialisation
+    //HWREG16(TIMERA_TACTL_REG_ADDR) = TENMS__TACTL_STARTUP_CONFIG;
     HWREG16(TIMERA_TACCTL1_REG_ADDR) = TENMS__TACCTL_STARTUP_CONFIG;
     HWREG16(TIMERA_TACCTL1_REG_ADDR) &= ~TIMERA_CCIFG_MASK;
 
@@ -126,6 +127,7 @@ void TENMS__Reset(void)
 
 void TENMS__Control(uint16_t *timerInterfaceBuffer)
 {
+    INT__Disable(TIMERA_CC1_INT);
     switch(timerInterfaceBuffer[TENMS__CONFIG_SETTING_IDX])
     {
         case TENMS__TIMER_START:
@@ -139,6 +141,7 @@ void TENMS__Control(uint16_t *timerInterfaceBuffer)
         default:
             LIBUTIL__LogError(TENMS__INVALID_CONTROL_SETTING);
     }    
+    INT__Enable(TIMERA_CC1_INT);
 }
 
 //*****************************************************************************

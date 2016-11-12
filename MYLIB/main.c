@@ -22,6 +22,7 @@ int main(void) {
     INT__EnableInterrupts();    //Enable interrupt generation
 
     TENMS__Reset();             //Intialise ten milliseond timer driver
+    ONEMS__Reset(); 
     GPIO_reset();
 
     //Main application loop

@@ -59,7 +59,9 @@ __interrupt void GPIO_PORT2_Handler(void)
 #pragma vector = TIMERA0_VECTOR
 __interrupt void TIMERA0_HANDLER(void) 
 {
-
+#ifdef COMPILED_ONEMS_CTL	
+	OneMilliSecondEventHandler();
+#endif
 }
 
 #else
@@ -72,7 +74,9 @@ __interrupt void TIMERA0_HANDLER(void)
 #pragma vector = TIMERA1_VECTOR
 __interrupt void TIMERA1_HANDLER(void) 
 {
+#ifdef COMPILED_TENMS_CTL
 	TenMilliSecondEventHandler();
+#endif
 }
 
 #else
@@ -143,6 +147,9 @@ void INT__Enable(uint8_t int_id)
 		case TIMERA_INT:
 			HWREG16(TIMERA_TACTL_REG_ADDR) |= TIMERA_TAIE_MASK;
 			break;
+		case TIMERA_CC0_INT:
+			HWREG16(TIMERA_TACCTL0_REG_ADDR) |= TIMERA_CCIE_MASK;
+			break;
 		case TIMERA_CC1_INT:
 			HWREG16(TIMERA_TACCTL1_REG_ADDR) |= TIMERA_CCIE_MASK;
 			break;	 
@@ -180,6 +187,9 @@ void INT__Disable(uint8_t int_id)
 			break;
 		case TIMERA_INT:
 			HWREG16(TIMERA_TACTL_REG_ADDR) &= ~TIMERA_TAIE_MASK;
+			break;
+		case TIMERA_CC0_INT:
+			HWREG16(TIMERA_TACCTL0_REG_ADDR) &= ~TIMERA_CCIE_MASK;
 			break;
 		case TIMERA_CC1_INT:
 			HWREG16(TIMERA_TACCTL1_REG_ADDR) &= ~TIMERA_CCIE_MASK;

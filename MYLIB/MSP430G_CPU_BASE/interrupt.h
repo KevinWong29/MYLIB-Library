@@ -71,8 +71,9 @@
 //Timer A interrupt ID
 
 #define TIMERA_INT       14
-#define TIMERA_CC1_INT   15
-#define TIMERA_CC2_INT   16
+#define TIMERA_CC0_INT   15
+#define TIMERA_CC1_INT   16
+#define TIMERA_CC2_INT   17
 
 //*****************************************************************************
 //

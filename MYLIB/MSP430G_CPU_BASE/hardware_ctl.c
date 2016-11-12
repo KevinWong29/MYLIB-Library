@@ -45,6 +45,9 @@ void HW__InitialiseSystem(void)
         // Logging the error here will not suffice!
         LIBUTIL__LogError(HW__EXT_CLOCK_FAULT);
     }    
+
+    //Configure the TIMERA peripheral, set the timer clock source, clock division and operating mode
+    HWREG16(TIMERA_TACTL_REG_ADDR) = TIMERA_SOURCE_SMCLK + TIMERA_DIVIDE_1 + TIMERA_MODE_CONTINUOUS + TIMERA_TACLR_MASK;
 }
 
 //*****************************************************************************
