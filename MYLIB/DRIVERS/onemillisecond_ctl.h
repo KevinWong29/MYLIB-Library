@@ -32,6 +32,7 @@
 
 enum 
 {
+    LED_SOFT_TIMER_2 = 0,
     ONEMS__NUM_SOFT_TIMERS
 };
 
@@ -50,7 +51,7 @@ enum
 #define ONEMS__TACCTL_STARTUP_CONFIG    0x0000 //Configure with register default value
 
 //Timer counter value to produce 10ms interrupt intervals
-#define ONEMS__TIMER_COMPARE_VALUE          10000    //Value calculated for 1MHz system clock
+#define ONEMS__TIMER_COMPARE_VALUE          1000    //Value calculated for 1MHz system clock
 
 #define ONEMS__MAX_SOFT_TIMERS              16
 
@@ -69,9 +70,9 @@ enum
 
 #define ONEMS__INTERFACE_BUFFER_SIZE        3
 
-#define ONEMS__INVALID_TIMER_READ           11
-#define ONEMS__INVALID_TIMER_WRITE          12
-#define ONEMS__INVALID_CONTROL_SETTING      13
+#define ONEMS__INVALID_TIMER_READ           31
+#define ONEMS__INVALID_TIMER_WRITE          32
+#define ONEMS__INVALID_CONTROL_SETTING      33
 
 
 //*****************************************************************************

@@ -87,6 +87,21 @@
 
 //*****************************************************************************
 //
+// GPIO register memory address offsets defined here.
+//
+//*****************************************************************************
+
+#define OFS_PIN     (0x0000)  //Memory address offset to PxIN register
+#define OFS_POUT    (0x0001)  //Memory address offset to PxOUT register
+#define OFS_PDIR    (0x0002)  //Memory address offset to PxDIR register
+#define OFS_PREN    (0x0007)  //Memory address offset to PxREN register
+#define OFS_PSEL_1  (0x0006)  //Memory address offset to PxSEL register
+#define OFS_PSEL_2  (0x0004)  //Memory address offset to PxSEL register for port 3 and onwards
+#define OFS_IFG     (0x0003)  //Memory address offset to PxIFG register
+#define OFS_IE      (0x0005)  //Memory address offset to PxIE register
+
+//*****************************************************************************
+//
 // Clock control register base addresses, offset and constants defined here.
 //
 //*****************************************************************************
@@ -230,6 +245,8 @@
 
 //Capture and Compare interrupt flag mask
 #define TIMERA_CCIFG_MASK                     0x0001
+#define TIMERA_TAIV_CCR1_CCIFG                0x0002
+#define TIMERA_TAIV_CCR2_CCIFG                0x0004
 
 //Timer A interrupt enable mask
 #define TIMERA_TAIE_MASK                      0x0002
